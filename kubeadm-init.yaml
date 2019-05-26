@@ -1,0 +1,8 @@
+apiVersion: kubeadm.k8s.io/v1alpha2
+kind: MasterConfiguration
+kubernetesVersion: v1.11.1    # kubernetes的版本
+api:
+  advertiseAddress: 172.16.242.129 # Master的IP地址
+networking:
+  podSubnet: 192.168.0.0/16    # pod网络的网段
+imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
