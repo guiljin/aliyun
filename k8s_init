@@ -29,3 +29,14 @@ docker tag docker.io/mirrorgooglecontainers/kube-proxy:v1.14.2 k8s.gcr.io/kube-p
 docker tag docker.io/mirrorgooglecontainers/pause:3.1 k8s.gcr.io/pause:3.1
 docker tag docker.io/mirrorgooglecontainers/etcd:3.3.10 k8s.gcr.io/etcd:3.3.10
 docker tag docker.io/coredns/coredns:1.3.1 k8s.gcr.io/coredns:1.3.1
+
+kubeadm init --config kubeadm-config.yaml
+
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+source ~/.bash_profile
+
+wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+cat kube-flannel.yml | grep image
+cat kube-flannel.yml | grep 10.244
+sed -i 's#quay.io/coreos/flannel:v0.11.0-amd64#willdockerhub/flannel:v0.11.0-amd64#g' kube-flannel.yml
+kubectl apply -f kube-flannel.yml
