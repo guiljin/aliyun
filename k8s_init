@@ -1,18 +1,3 @@
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
-enabled=1
-gpgcheck=0
-repo_gpgcheck=0
-gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
-        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-EOF
-yum install -y kubeadm && source <(kubectl completion bash)
-systemctl enable kubelet && systemctl start kubelet
-
-echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables
-
 # 因为k8s.gcr.io被墙了
 docker pull mirrorgooglecontainers/kube-apiserver:v1.14.2
 docker pull mirrorgooglecontainers/kube-controller-manager:v1.14.2
