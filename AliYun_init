@@ -57,28 +57,3 @@ pip install docker-compose
 
 yum install -y git
 git clone https://gitee.com/wowiwj/docker-k8s-devops.git
-
-cat > start_jenkins <<EOF
-docker run \
-  -u root \
-  --rm \
-  -d \
-  -p 8080:8080 \
-  -p 50000:50000 \
-  -v /root/jenkins-data:/var/jenkins_home \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  jenkinsci/blueocean
-EOF
-chmod +x start_jenkins
-
-cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
-enabled=1
-gpgcheck=0
-repo_gpgcheck=0
-gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
-        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-EOF
-yum install -y kubeadm
