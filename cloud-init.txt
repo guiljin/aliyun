@@ -1,0 +1,8 @@
+#cloud-config
+runcmd:
+  - yum install -y git
+  - cd ~
+  - git clone https://github.com/guiljin/aliyun.git
+  - cd aliyun
+  - chmod +x AliYun_init
+  - ./AliYun_init
