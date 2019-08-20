@@ -58,6 +58,8 @@ pip install docker-compose
 
 yum install -y git
 git clone https://gitee.com/wowiwj/docker-k8s-devops.git
+git clone https://github.com/ekalinin/Dockerfile.vim.git
+(cd Dockerfile.vim && make install)
 
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
