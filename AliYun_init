@@ -2,6 +2,7 @@
 
 echo 'export PS1="\[\e[35;1m\][\A \u@\h \W]\$\[\e[0m\]"' >> /root/.bash_profile
 cp .vimrc /root/
+cp .gitconfig /root/
 
 yum remove docker \
 docker-client \
