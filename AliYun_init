@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Install in CentOS
 
 echo 'export PS1="\[\e[35;1m\][\A \u@\h \W]\$\[\e[0m\]"' >> /root/.bash_profile
@@ -34,12 +35,13 @@ systemctl start docker
 # test docker
 docker run hello-world
 
-# repo mirror
+# repo mirror & remote connect
 tee /etc/docker/daemon.json <<-'EOF'
 {
   "registry-mirrors": ["https://qe2vinnb.mirror.aliyuncs.com"]
 }
 EOF
+sed -i 's#ExecStart=/usr/bin/dockerd#& -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock#' /usr/lib/systemd/system/docker.service
 systemctl daemon-reload
 systemctl restart docker
 
